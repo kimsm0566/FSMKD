@@ -4,23 +4,18 @@ def args_parser():
     parser = argparse.ArgumentParser()
     # federated arguments
     parser.add_argument('--round', type=int, default=200, help="rounds of training")
-    parser.add_argument('--num_users', type=int, default=1, help="number of users: K")
+    parser.add_argument('--num_users', type=int, default=5, help="number of users: K")
     parser.add_argument('--frac', type=int, default=1, help="the fraction of clients: C")
     parser.add_argument('--local_ep', type=int, default=1, help="the number of local epochs: E")
-    parser.add_argument('--local_bs', type=int, default=128, help="local batch size: B")
     parser.add_argument('--bs', type=int, default=1024, help="test batch size")
     parser.add_argument('--lr', type=float, default=0.001, help="learning rate")
     parser.add_argument('--momentum', type=float, default=0.5, help="SGD momentum (default: 0.5)")
     parser.add_argument('--t', type=float, default=2, help="T")
     parser.add_argument('--alpha', type=float, default=0.5, help="weight sum ratio")
     
-    
     # model arguments
-    parser.add_argument('--model', type=str, default='vit', help='model name')
-    parser.add_argument("--algorithm",
-                    help="Algorithm: ['Regular', 'Joint', 'FedAvg', 'AvgPush', 'FML', 'ProxyFL'].",
-                    type=str, choices=['Regular', 'Joint', 'FedAvg', 'AvgPush', 'FML', 'ProxyFL'],
-                    default="FSMKD")
+    parser.add_argument('--model', type=str, choices=['vit', 'vgg'], default='vit', help='model name')
+    parser.add_argument("--algorithm",type=str, choices=['FSMKD'],default="FSMKD", help="Algorithm: ['FSMKD'].")
     
     #data arguments
     parser.add_argument('--dataset', type=str, default='mnist', help="name of dataset")
