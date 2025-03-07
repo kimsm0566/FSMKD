@@ -1,0 +1,19 @@
+services:
+  pytorch:
+    build:
+      context: .  # Dockerfile이 위치한 디렉토리
+      dockerfile: Dockerfile
+    image: fsmkd  # 빌드 후 생성할 이미지 이름
+    command: tail -f /dev/null
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ~:/workspace  # 현재 디렉토리를 컨테이너의 /workspace로 매핑
+    working_dir: /workspace  # 기본 작업 디렉토리
+    stdin_open: true  # 터미널 입력 활성화
+    tty: true         # 터미널 환경 활성화
