@@ -97,5 +97,3 @@ This implementation is based on the paper *"Federated Split Learning via Mutual 
 
 For more details, refer to the [paper][(https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/31641994/3cf59dec-806b-4734-813f-0ddd05e09ace/Federated_Split_Learning_via_Mutual_Knowledge_Distillation.pdf).](https://ieeexplore.ieee.org/document/10378869)
 
-Citations:
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/31641994/3cf59dec-806b-4734-813f-0ddd05e09ace/Federated_Split_Learning_via_Mutual_Knowledge_Distillation.pdf
