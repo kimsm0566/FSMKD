@@ -54,6 +54,7 @@ def train_fsmkd(server, client, args):
             # KL Divergence 계산
             server_loss_MKD = kl_div(args, logit_server_p, logit_client_p)
             client_loss_MKD = kl_div(args, logit_client_p, logit_server_p)
+            # print(f"server_loss_MKD: {server_loss_MKD:.2f}, client_loss_MKD: {client_loss_MKD:.2f}")
 
             server_loss = server_loss_ce + server_loss_MKD
             client_loss = client_loss_ce + client_loss_MKD
@@ -104,7 +105,7 @@ def train(args, clients, server, testdata):
             h_w_locals[idx] = copy.deepcopy(client.model.head.state_dict())
             t_w_locals[idx] = copy.deepcopy(client.model.tail.state_dict())
             
-        if iter % 10 == 0:
+        if iter % 50 == 0:
             # update global weights
             w_avg_head = FedAvg(h_w_locals)
             w_avg_tail = FedAvg(t_w_locals)

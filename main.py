@@ -39,7 +39,7 @@ if __name__ == '__main__':
         for idx in range(args.num_users):
             client = Client(client_data_list[idx], args, idx).to(args.device)
             clients.append(client)
-            
+
     list_server_accuracies, list_client_accuracies, list_server_loss, list_client_loss = train(args, clients, server, test_data)
 
     plot(args, list_server_accuracies, list_client_accuracies, list_server_loss, list_client_loss)

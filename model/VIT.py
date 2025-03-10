@@ -269,28 +269,6 @@ def _vision_transformer(
 
     return model
 
-class BaseModel:
-    def __init__(self, patch_size, num_heads, hidden_dim, mlp_dim, num_classes, weights=None, progress=True):
-        self.patch_size = patch_size
-        self.num_heads = num_heads
-        self.hidden_dim = hidden_dim
-        self.mlp_dim = mlp_dim
-        self.num_classes = num_classes
-        self.weights = weights
-        self.progress = progress
-
-    def build_model(self, num_layers):
-        """_vision_transformer를 호출하여 모델 생성"""
-        return _vision_transformer(
-            patch_size=self.patch_size,
-            num_layers=num_layers,
-            num_heads=self.num_heads,
-            hidden_dim=self.hidden_dim,
-            mlp_dim=self.mlp_dim,
-            weights=self.weights,
-            progress=self.progress,
-            num_classes=self.num_classes,
-        )
 
 class Vit_Model(nn.Module):
     def __init__(self, patch_size, num_layers, num_heads, hidden_dim, mlp_dim, num_classes, weights=None, progress=True):
@@ -346,7 +324,7 @@ def VIT_client(args):
 def VIT_server(args):
     model = Vit_Model(
             patch_size=4,
-            num_layers=1,  # 클라이언트는 1-layer Transformer 사용
+            num_layers=12,  # 클라이언트는 1-layer Transformer 사용
             num_heads=4,
             hidden_dim=64,
             mlp_dim=256,

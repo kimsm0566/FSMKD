@@ -38,14 +38,12 @@ def partition_data(train_X, train_y, args):
             
             # major 클래스 데이터 개수 설정
             n_major = int(args.n_client_data * args.major_percent)
-            assert n_major <= len(major_idx), f"클래스 {client_major_class}의 데이터가 부족합니다."
             major_idx = major_idx[:n_major]
 
             # minor 클래스 데이터 개수 설정
             n_minor = args.n_client_data - n_major
             minor_idx = np.where(~major_mask)[0]
             np.random.shuffle(minor_idx)
-            assert n_minor <= len(minor_idx), "minor 클래스 데이터가 부족합니다."
             minor_idx = minor_idx[:n_minor]
 
             client_data_idx = np.concatenate((major_idx, minor_idx))
@@ -63,6 +61,7 @@ def partition_data(train_X, train_y, args):
             major_mask = train_y == client_major_class
             major_idx = np.where(major_mask)[0]
             np.random.shuffle(major_idx)
+            
             major_idx = major_idx[:int(args.n_client_data * args.major_percent)]
 
             minor_idx = np.where(~major_mask)[0]
